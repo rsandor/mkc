@@ -3,15 +3,18 @@ JavaScript Multi-Key LRU Cache
 
 ## Overview
 
-mkc is a node package that implements a multi-key LRU cache. Usage is pretty
-straight forward, here's an example:
+mkc is a node package that implements a multi-key LRU cache. It uses
+[lru-cache](https://github.com/isaacs/node-lru-cache) under the hood but adds
+functionality for handling mutli-keys and batch cache eviction (purging).
+
+## Usage
 
 ```js
 // Require the library
-var mkc = require('mkc');
+var MultiKeyCache = require('mkc');
 
-// Create a new cache of size 4
-var cache = mkc({ size: 4 });
+// Create a new cache
+var cache = new MultiKeyCache({ max: 4 });
 
 // Add a few entries to the cache
 cache.set({ key1: 'alpha', key2: 'one' }, { name: 'one' });
