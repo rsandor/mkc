@@ -66,6 +66,11 @@ cache.purge({ a: 1 });
 ### .reset()
 Clears the entire cache.
 
+
+## Developing
+To run tests simply execute `npm test` on the command line. You can also build
+the jsdocs for the project using `npm run doc`.
+
 ## License
 
 MIT
