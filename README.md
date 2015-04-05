@@ -21,16 +21,38 @@ cache.set({ key1: 'beta', key2: 'one' }, { name: 'one' });
 // Returns: { name: 'two' }
 cache.get({ key1: 'alpha', key2: 'two' });
 
-// Returns: [ { name: 'one' }, { name: 'two' } ]
-cache.get({ key1: 'alpha' });
-
 // Removes all entries with key1 === 'alpha'
 cache.purge({ key1: 'alpha' });
 ```
 
 ## Documentation
 
-Coming soon.
+### new MultiKeyCache( [options] )
+Creates a new multi-key cache with the given options. The options should follow
+the same format given to the [lru-cache](https://github.com/isaacs/node-lru-cache)
+constructor.
+
+##### Example
+```js
+var myCache = new MultiKeyCache({
+  max: 1024,
+  length: function (string) {
+    return string.length;
+  }
+});
+```
+
+### .set(keyValues, object)
+Puts an object into the cache with the given key values.
+
+### .get(keyValues)
+Gets and object from the cache with the given key values.
+
+### .purge(keyValues)
+Removes all objects with the given key values.
+
+### .reset()
+Clears the entire cache.
 
 ## License
 
