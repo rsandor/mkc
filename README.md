@@ -54,10 +54,10 @@ Removes all objects with the given key values.
 
 ```js
 // Add a few objects...
-cache.set({ a: 1, b: 1}, '1-1');
-cache.set({ a: 1, b: 2}, '1-2');
-cache.set({ a: 1, b: 3}, '1-3');
-cache.set({ a: 2, b: 1}, '2-1');
+cache.set({a: 1, b: 1}, '1-1');
+cache.set({a: 1, b: 2}, '1-2');
+cache.set({a: 1, b: 3}, '1-3');
+cache.set({a: 2, b: 1}, '2-1');
 
 // Removes everything execpt '2-1'
 cache.purge({ a: 1 });
