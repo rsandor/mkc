@@ -1,6 +1,6 @@
 {
   "name": "mkc",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "JavaScript Multi-Key LRU Cache",
   "main": "index.js",
   "scripts": {
