@@ -1,5 +1,7 @@
 # mkc
 
+![Build Status](https://travis-ci.org/rsandor/mkc.svg?branch=master)
+
 mkc is a node package that implements a multi-key LRU cache. It uses
 [lru-cache](https://github.com/isaacs/node-lru-cache) under the hood but adds
 functionality for handling mutli-keys and batch cache eviction (purging).
