@@ -5,9 +5,9 @@
 
 [![NPM](https://nodei.co/npm/mkc.png?compact=true)](https://nodei.co/npm/mkc)
 
-mkc is a node package that implements a multi-key LRU cache. It uses
-[lru-cache](https://github.com/isaacs/node-lru-cache) under the hood but adds
-functionality for handling mutli-keys and batch cache eviction (purging).
+Node implementation of a multi-key LRU cache. It uses
+[lru-cache](https://github.com/isaacs/node-lru-cache) under the hood and adds
+functionality for handling mutli-keys puts and batch cache eviction (purging).
 
 ## Usage
 
