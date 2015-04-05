@@ -25,7 +25,7 @@ function MultiKeyCache(options) {
   };
 
   this.cache = new LRU(options);
-  this.keyMap = {};
+  this._keyMap = {};
 }
 
 /**
@@ -51,22 +51,25 @@ function parse(key) {
  * @param {string} keyHash Key hash for the disposed object.
  */
 MultiKeyCache.prototype._dispose = function (keyHash) {
-  var keyValues = JSON.parse(keyHash);
+  var keyValues = parse(keyHash);
   for (var key in keyValues) {
     var value = keyValues[key];
-    if (!this.keyMap[key]) {
+    if (!this._keyMap[key]) {
       continue;
     }
-    if (!Array.isArray(this.keyMap[key][value])) {
+    if (!Array.isArray(this._keyMap[key][value])) {
       continue;
     }
-    var map = this.keyMap[key][value];
+    var map = this._keyMap[key][value];
     var index = map.indexOf(keyHash);
     if (~index) {
       map.splice(index, 1);
     }
+    if (map.length === 0) {
+      delete this._keyMap[key][value];
+    }
   }
-}
+};
 
 /**
  * Puts an object into the cache with the given key values.
@@ -78,13 +81,13 @@ MultiKeyCache.prototype.set = function (keyValues, object) {
 
   for (var key in keyValues) {
     var value = keyValues[key];
-    if (!this.keyMap[key]) {
-      this.keyMap[key] = {};
+    if (!this._keyMap[key]) {
+      this._keyMap[key] = {};
     }
-    if (!this.keyMap[key][value]) {
-      this.keyMap[key][value] = [];
+    if (!this._keyMap[key][value]) {
+      this._keyMap[key][value] = [];
     }
-    this.keyMap[key][value].push(keyHash);
+    this._keyMap[key][value].push(keyHash);
   }
 
   this.cache.set(keyHash, object);
@@ -93,7 +96,8 @@ MultiKeyCache.prototype.set = function (keyValues, object) {
 /**
  * Gets and object from the cache with the given key values.
  * @param {Object} keyValues Key values that identify the object in the cache.
- * @return If found, the object with the given key values. `null` otherwise.
+ * @return If found, the object with the given key values. `undefined`
+ *   otherwise.
  */
 MultiKeyCache.prototype.get = function (keyValues) {
   var keyHash = hash(keyValues);
@@ -119,19 +123,22 @@ MultiKeyCache.prototype.purge = function (keyValues) {
 
   for (var key in keyValues) {
     var value = keyValues[key];
-    if (!this.keyMap[key]) {
+
+    if (!this._keyMap[key]) {
       continue;
     }
-    if (!Array.isArray(this.keyMap[key])) {
+    if (!Array.isArray(this._keyMap[key][value])) {
       continue;
     }
-    this.keyMap[key][value].forEach(function (keyHash) {
-      delKeyHashSet[keyHash] = true;
-    });
+
+    var map = this._keyMap[key][value];
+    for (var i = 0; i < map.length; i++) {
+      delKeyHashSet[map[i]] = true;
+    }
   }
 
   for (var keyHash in delKeyHashSet) {
-    this.cache.purge(keyHash);
+    this.cache.del(keyHash);
   }
 };
 
@@ -140,5 +147,5 @@ MultiKeyCache.prototype.purge = function (keyValues) {
  */
 MultiKeyCache.prototype.reset = function () {
   this.cache.reset();
-  this.keyMap = {};
+  this._keyMap = {};
 };

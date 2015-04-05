@@ -22,6 +22,10 @@
     "url": "https://github.com/rsandor/mkc/issues"
   },
   "homepage": "https://github.com/rsandor/mkc",
+  "jshintConfig": {
+    "node": true,
+    "curly": true
+  },
   "dependencies": {
     "lru-cache": "^2.5.0"
   },
