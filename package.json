@@ -1,0 +1,24 @@
+{
+  "name": "mkc",
+  "version": "0.0.1",
+  "description": "JavaScript Multi-Key LRU Cache",
+  "main": "index.js",
+  "scripts": {
+    "test": "jshint index.js lib/ && lab -v -c test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rsandor/mkc.git"
+  },
+  "keywords": [
+    "multi-key",
+    "cache",
+    "lru"
+  ],
+  "author": "Ryan Sandor Richards <sandor.richards@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rsandor/mkc/issues"
+  },
+  "homepage": "https://github.com/rsandor/mkc"
+}
