@@ -1,7 +1,4 @@
 # mkc
-JavaScript Multi-Key LRU Cache
-
-## Overview
 
 mkc is a node package that implements a multi-key LRU cache. It uses
 [lru-cache](https://github.com/isaacs/node-lru-cache) under the hood but adds
