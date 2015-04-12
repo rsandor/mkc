@@ -1,5 +1,6 @@
 'use strict';
 
+var stringify = require('json-stable-stringify');
 var LRU = require('lru-cache');
 
 /**
@@ -34,7 +35,7 @@ function MultiKeyCache(options) {
  * @return {string} The hash string for the set of key values.
  */
 function hash(keyValues) {
-  return JSON.stringify(keyValues);
+  return stringify(keyValues);
 }
 
 /**

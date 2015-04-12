@@ -27,6 +27,7 @@
     "curly": true
   },
   "dependencies": {
+    "json-stable-stringify": "^1.0.0",
     "lru-cache": "^2.5.0"
   },
   "devDependencies": {

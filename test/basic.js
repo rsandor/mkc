@@ -71,6 +71,18 @@ describe('mkc', function () {
       done();
     });
 
+    it('should get and set values with keys in different orders', function (done) {
+      var keyValuesA = { k1: 'a', k2: 'b' };
+      var keyValuesB = { k2: 'b', k1: 'a' };
+      var valueA = { alpha: 'beta', gamma: 'delta' };
+
+      cache.set(keyValuesA, valueA);
+      var valueB = cache.get(keyValuesB);
+      expect(valueA).to.equal(valueB);
+      
+      done();
+    });
+
     it('reset the cache', function (done) {
       var keyValues = { a: 'a'};
       cache.set(keyValues, 'example');
