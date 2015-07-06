@@ -36,6 +36,18 @@ describe('mkc', function () {
       expect(typeof cache.reset).to.equal('function');
       done();
     });
+
+    it('should expose a `itemCount` method', function(done) {
+      expect(cache.itemCount).to.be.a.function();
+      expect(cache.itemCount()).to.equal(0);
+      done();
+    });
+
+    it('should expose a `length` method', function(done) {
+      expect(cache.length).to.be.a.function();
+      expect(cache.length()).to.equal(0);
+      done();
+    });
   }); // end 'interface'
 
   describe('behaviors', function () {
@@ -79,7 +91,7 @@ describe('mkc', function () {
       cache.set(keyValuesA, valueA);
       var valueB = cache.get(keyValuesB);
       expect(valueA).to.equal(valueB);
-      
+
       done();
     });
 

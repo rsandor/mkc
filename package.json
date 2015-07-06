@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "json-stable-stringify": "^1.0.0",
-    "lru-cache": "^2.5.0"
+    "lru-cache": "^2.6.5"
   },
   "devDependencies": {
     "code": "^1.4.0",

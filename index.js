@@ -150,3 +150,19 @@ MultiKeyCache.prototype.reset = function () {
   this.cache.reset();
   this._keyMap = {};
 };
+
+/**
+ * Reports the number of items in the multi-key cache.
+ * @return The number of items in the cache.
+ */
+MultiKeyCache.prototype.itemCount = function () {
+  return this.cache.itemCount;
+};
+
+/**
+ * Reports the total length of the items in the multi-key cache.
+ * @return The length of the items in the cache.
+ */
+MultiKeyCache.prototype.length = function () {
+  return this.cache.length;
+};
