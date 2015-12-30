@@ -25,6 +25,12 @@ describe('mkc', function () {
       done();
     });
 
+    it('should expose a `has` method', function (done) {
+      expect(cache.has).to.exist();
+      expect(typeof cache.has).to.equal('function');
+      done();
+    });
+
     it('should expose a `purge` method', function (done) {
       expect(cache.purge).to.exist();
       expect(typeof cache.purge).to.equal('function');
@@ -116,6 +122,15 @@ describe('mkc', function () {
         expect(cache.get({ a: '1', b: n })).to.not.exist();
       });
 
+      done();
+    });
+
+    it('should report when items are in the cache', function (done) {
+      var hasKey = { a: '1', b: '1' };
+      var hasNotKey = { a: '1', b: '2' };
+      cache.set(hasKey, '1-1');
+      expect(cache.has(hasKey)).to.be.true();
+      expect(cache.has(hasNotKey)).to.be.false();
       done();
     });
 
