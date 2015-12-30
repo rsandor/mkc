@@ -1,6 +1,6 @@
 {
   "name": "mkc",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "JavaScript Multi-Key LRU Cache",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "json-stable-stringify": "^1.0.0",
-    "lru-cache": "^2.5.0"
+    "lru-cache": "^2.6.5"
   },
   "devDependencies": {
     "code": "^1.4.0",

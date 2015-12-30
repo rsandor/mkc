@@ -25,6 +25,12 @@ describe('mkc', function () {
       done();
     });
 
+    it('should expose a `has` method', function (done) {
+      expect(cache.has).to.exist();
+      expect(typeof cache.has).to.equal('function');
+      done();
+    });
+
     it('should expose a `purge` method', function (done) {
       expect(cache.purge).to.exist();
       expect(typeof cache.purge).to.equal('function');
@@ -34,6 +40,18 @@ describe('mkc', function () {
     it('should expose a `reset` method', function (done) {
       expect(cache.reset).to.exist();
       expect(typeof cache.reset).to.equal('function');
+      done();
+    });
+
+    it('should expose a `itemCount` method', function(done) {
+      expect(cache.itemCount).to.be.a.function();
+      expect(cache.itemCount()).to.equal(0);
+      done();
+    });
+
+    it('should expose a `length` method', function(done) {
+      expect(cache.length).to.be.a.function();
+      expect(cache.length()).to.equal(0);
       done();
     });
   }); // end 'interface'
@@ -79,7 +97,7 @@ describe('mkc', function () {
       cache.set(keyValuesA, valueA);
       var valueB = cache.get(keyValuesB);
       expect(valueA).to.equal(valueB);
-      
+
       done();
     });
 
@@ -104,6 +122,15 @@ describe('mkc', function () {
         expect(cache.get({ a: '1', b: n })).to.not.exist();
       });
 
+      done();
+    });
+
+    it('should report when items are in the cache', function (done) {
+      var hasKey = { a: '1', b: '1' };
+      var hasNotKey = { a: '1', b: '2' };
+      cache.set(hasKey, '1-1');
+      expect(cache.has(hasKey)).to.be.true();
+      expect(cache.has(hasNotKey)).to.be.false();
       done();
     });
 
