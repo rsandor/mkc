@@ -106,6 +106,16 @@ MultiKeyCache.prototype.get = function (keyValues) {
 };
 
 /**
+ * Determines if an object exists in the cache for the given key values.
+ * @param {Object} keyValues Key values that identify the object in the cache.
+ * @return {Boolean} `true` if found, `false` otherwise.
+ */
+MultiKeyCache.prototype.has = function (keyValues) {
+  var keyHash = hash(keyValues);
+  return this.cache.has(keyHash);
+};
+
+/**
  * Removes all objects with the given key values.
  *
  * @example
